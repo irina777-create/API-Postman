@@ -1,0 +1,161 @@
+{
+	"info": {
+		"_postman_id": "32f49d70-33ed-4f92-aa42-8b8863f5f4aa",
+		"name": "Lesson 39",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31964279"
+	},
+	"item": [
+		{
+			"name": "pm.cookies",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// А ось тут вже цікавіше! Перед тим як користуватися cookies.jar() вам потрібно додати domain до allowlist\r",
+							"\r",
+							"\r",
+							"const cookieJar = pm.cookies.jar();\r",
+							"//cookieJar.set(\"https://qauto.forstudy.space\", \"test_key\", \"test_value\"); // Просто додаємо кукі\r",
+							"\r",
+							"\r",
+							"// А ось і наші callback функції\r",
+							"\r",
+							"/*\r",
+							"cookieJar.set(\"https://qauto.forstudy.space\", \"test2_key\", \"test_value\", function(error, cookie) {\r",
+							"    if (error) {\r",
+							"        console.error(\"Помилка під час встановлення cookie:\", error);\r",
+							"    } else {\r",
+							"        console.log(\"Cookie було успішно встановлено:\", cookie);\r",
+							"    }\r",
+							"});\r",
+							"*/\r",
+							"\r",
+							"// Ну і звісно приклда стрілкової функції з додатковими параметрами cookie\r",
+							"/*\r",
+							"let cookie = {\r",
+							"    name:'test2',\r",
+							"    value:'test2',  \r",
+							"    secure: true, \r",
+							"    httpOnly: true    \r",
+							"}\r",
+							"\r",
+							"cookieJar.set(\"https://qauto.forstudy.space\",cookie, (error, cookie)=> {\r",
+							"    if (error) {\r",
+							"        console.error(\"Помилка під час встановлення cookie:\", error);\r",
+							"    } else {\r",
+							"        console.log(\"Cookie було успішно встановлено:\", cookie);\r",
+							"    }\r",
+							"});\r",
+							"*/\r",
+							"\r",
+							"// Ну і звісно інші CRUD маніпуляції з кукою\r",
+							"\r",
+							"/*\r",
+							"cookieJar.get(\"https://qauto.forstudy.space\", \"test2\", function(error, cookie) {\r",
+							"    if (error) {\r",
+							"        console.error(\"Помилка під час встановлення cookie:\", error);\r",
+							"    } else {\r",
+							"        console.log(\"Cookie було успішно встановлено:\", cookie);\r",
+							"    }\r",
+							"});\r",
+							"*/\r",
+							"\r",
+							"/*\r",
+							"cookieJar.getAll(\"https://qauto.forstudy.space\", function(error, cookie) {\r",
+							"    if (error) {\r",
+							"        console.error(\"Помилка під час встановлення cookie:\", error);\r",
+							"    } else {\r",
+							"        console.log(\"Cookie було успішно встановлено:\", cookie);        \r",
+							"    }\r",
+							"});\r",
+							"*/\r",
+							"\r",
+							"\r",
+							"cookieJar.unset(\"https://qauto.forstudy.space\" , \"test2\", (error, cookie)=>{\r",
+							"   if (error) {\r",
+							"        console.error(\"Помилка під час встановлення cookie:\", error);\r",
+							"    } else {\r",
+							"        console.log(\"Cookie було успішно встановлено:\", cookie);\r",
+							"        return cookie;\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Минулого разу ми вже знайомилися де і як можна подивитися cookies, але звісно нам хочеться \r",
+							"//проводити різні маніпуляції з ними, що і дає нам pm.cookies\r",
+							"\r",
+							"// Перевірте, чи існує певний файл cookie (вказаний за назвою)\r",
+							"/*console.log(pm.cookies); // Масив кук\r",
+							"console.log(pm.cookies.has('sid'));*/ \r",
+							"\r",
+							"//Отримати значення вказаного файлу cookie\r",
+							"//console.log(pm.cookies.get('sid')) \r",
+							"\r",
+							"// Отримати копію всіх файлів cookie та їхніх значень в об’єкті.\r",
+							"//console.log(pm.cookies.toObject()) \r",
+							"\r",
+							"// Далі дивись pre request"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableCookies": false,
+				"followRedirects": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"{{$randomFirstName}}\",\r\n  \"lastName\": \"{{$randomLastName}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"password\": \"Qwerty12345\",\r\n  \"repeatPassword\": \"Qwerty12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://qauto.forstudy.space/api/auth/signup",
+					"protocol": "https",
+					"host": [
+						"qauto",
+						"forstudy",
+						"space"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
